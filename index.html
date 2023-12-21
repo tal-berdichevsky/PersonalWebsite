@@ -1,193 +1,598 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <style>.carousel-inner > .item > img {
-        width:640px;
-        height:360px;
-    } </style>
     <meta charset="UTF-8">
-    <title>PersonalWebsite</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity=
-            "sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Personal Website</title>
+    <style>
+        .carousel-inner > .item > img {
+            width: 640px;
+            height: 360px;
+        }
+        .lower-buttons {
+            margin-top: 10px;
+            border: none !important; 
+            margin-bottom: 220px;
+        }
+        .header-text {
+            text-align: center;
+            margin-top: 320px;
+            color: white;
+            font-family: 'Comfortaa';
+            font-weight: bold;
+        }
+        .header-text hr {
+            width: 40%;
+            height: 4px;
+            background-color: #ffffff;
+            margin: 0 auto;
+            border-radius: 5px;
+            opacity: 1;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .info-section .info {
+            font-size: 16px;
+            color: #000;
+            line-height: 1.5;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            margin-bottom: 10px; 
+            font-family: 'DM Sans', sans;
+        }
+        .profile-picture {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            border: 2px solid black;
+        }
+        .profile-picture img {
+            width: 100%;
+            height: auto;
+        }
+        .lighter-thinner {
+            font-weight: 300; 
+            color: #888;
+            font-family: 'DM Sans', sans;
+        }
+        .about-me {
+            position: relative;
+            padding-top: 200px;
+            padding-bottom: 200px;
+            padding-right: 30px;
+        }
+        .highlights-section {
+            background-color: rgba(240, 247, 255);
+            margin: 0;
+        }
+        .highlight-button-container {
+            display: flex;
+            border-radius: 50%; 
+            display: flex;
+        }
+
+        .btn.highlight-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50% !important;
+            overflow: hidden;
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none !important;
+            box-shadow: none !important;
+            outline: none !important;
+            padding: 0 !important;
+            background-color: transparent;
+        }
+
+        .btn.highlight-button img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .btn.highlight-button:hover, .btn.highlight-button:focus {
+            box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        .photography-section {
+            perspective: 1000px;
+        }
+
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .photo-item {
+            width: 250px;
+            transform: rotate(var(--rotation));
+            transition: transform 0.3s ease;
+            position: relative;
+            border: 5px solid white;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            background-color: white;
+        }
+
+        .photo-item:hover {
+            transform: rotate(0deg) scale(1.1);
+            z-index: 10;
+        }
+
+        .photo-item img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            color: black;
+            font-size: 1em;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            list-style: none;
+            padding-bottom: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 150px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ddd;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            margin-right: 300px;
+        }
+
+        .timeline-icon {
+            margin-top: 30px;
+            margin-left: 95px;
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid black;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden; 
+        }
+        .timeline-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+
+        .timeline-content {
+            margin-left: 220px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            font-family: 'DM Sans', sans;
+            margin-bottom: 50px;
+        }
+
+        .gpa {
+            font-size: 0.8em;
+            color: #555;
+            margin-left: 10px;
+        }
+
+        .date {
+            font-size: 0.8em;
+            color: #999;
+            font-style: italic;
+        }
+        .title-and-gpa {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            align-items: baseline;
+        }
+
+        .title-and-gpa h3 {
+            margin: 0;
+            padding-right: 10px;
+        }
+
+        .title-and-gpa .gpa {
+            margin: 0;
+            font-size: 0.8em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .education-details p {
+            margin: 0px 0;
+            margin-left: 50px;
+        }
+        .container-fluid .highlight-card {
+            background-color: rgba(240, 247, 255);
+            margin-left: 120px;
+            margin-right: 100px;
+        }
+        .highlight-card p {
+            font-family: 'DM Sans', sans;
+        }
+        .highlight-card ul {
+            font-family: 'DM Sans', sans;
+        }
+
+        .footer-title {
+            font-size: 30px;
+            margin-top: 50px;
+            margin-bottom: 5px;
+            font-family: 'DM Sans', sans;
+            color:#ffffff;
+        }
+        </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<!-- HEADING -->
-
-
-
-
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-
-<!-- HEADER -->
-<div class="card bg-dark text-white">
-<img src="images/background.png" class="img-fluid" alt="Responsive image">
-    <div class="card-img-overlay">
-
-        <p class="card-text">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <div class="row text-right justify-content-md-right">
-            <div class="col col-lg-7"></div>
-            <div class="col col-lg-1">
-                <a href="mailto: berdichevsky.t@northeastern.edu">
-                    <button type="button" class="btn btn-outline-light">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
-                            <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z"/>
-                            <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
+    <!-- HEADER -->
+    <div class="card bg-dark text-white">
+        <img src="images/background.png" class="img-fluid" alt="Responsive image">
+        <div class="card-img-overlay">
+            <div class="card-text">
+                <!--Name Section-->
+                <div class="header-text">
+                    <h1>Talia Berdichevsky</h1>
+                    <hr>
+                    <h4>Student, Software Engineer</h4>
+                </div>
+            <!-- Button Elements -->
+                <div class="row text-center justify-content-center">
+                    <div class="col col-lg-1">
+                        <a href="mailto: berdichevsky.t@northeastern.edu">
+                            <button type="button" class="btn btn-outline-light lower-buttons">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                                    <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z"/>
+                                    <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col col-lg-1">
+                    <a href="Resume-Tal Berdichevsky.pdf" download="Tal_Berdichevsky_Resume">
+                        <button type="button" class="btn btn-circle btn-outline-light lower-buttons">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
+                                <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
+                            </svg>
+                        </button>
+                    </a>
+                </div>
+                    <div class="col col-lg-1">
+                        <a href="https://www.linkedin.com/in/tal-berdichevsky/">
+                            <button type="button" class="btn btn-floating btn-outline-light lower-buttons">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="padding-top: 20px;">
+                <a href="#about-section">
+                    <button id="scrollDownButton" type="button" class="btn" aria-label="Scroll down">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16" style="stroke: white; stroke-width: 1;">
+                            <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
                         </svg>
                     </button>
                 </a>
             </div>
-            <div class="col col-lg-1">
-            <a href="resumePage.html">
-                <button type="button" class="btn btn-circle btn-outline-light">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-file-person-fill" viewBox="0 0 16 16">
-                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
-                    </svg>
+        </div>
+    </div>
+
+    <!-- PAGE CONTENTS -->
+    <div class="container-fluid" style="height: min-height">
+        <!-- ABOUT ME SECTION -->
+        <div class="about-me">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="profile-picture">
+                        <img src="images/profile.png" alt="Profile Picture" class="img-fluid" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6 info-section">
+                            <p class="info" data-aos="fade-up" data-aos-delay="50"><b>N A M E  :</b> <span class="lighter-thinner">    Talia (Tal) Berdichevsky</span></p>
+                            <p class="info" data-aos="fade-up" data-aos-delay="150"><b>P R O N O U N S  :</b><span class="lighter-thinner">     She/Her/Hers</span></p>
+                            <p class="info" data-aos="fade-up" data-aos-delay="250"><b>S C H O O L  :</b><span class="lighter-thinner">     Northeastern University, Khoury College of CS</span></p>
+                            <p class="info" data-aos="fade-up" data-aos-delay="350"><b>L A N G U A G E S  :</b> <span class="lighter-thinner">    Java | Swift | HTML | JavaScript | CSS | C | Python </span></p>
+                            <p class="info" data-aos="fade-up" data-aos-delay="450"><b>H O M E T O W N  :</b> <span class="lighter-thinner">    Newton, MA</span></p>
+                            <p class="info" data-aos="fade-up" data-aos-delay="550"><b>A G E  :</b> <span class="lighter-thinner">    20 Years</span></p>
+                            
+
+                            
+                        </div>
+                        <div class="col-md-6">
+                            <p class="lighter-thinner" data-aos="fade-up" data-aos-delay="200">A student at Northeastern University pursuing a BS Computer Science degree with a minor in Mathematics and a concentration in Artificial Intelligence. I am actively looking for opportunities to apply myself for a future career in software development!</p>
+                            <p class="lighter-thinner" data-aos="fade-up" data-aos-delay="400">I fluently speak English, Russian, Hebrew, and have classroom experience in Spanish. As for my hobbies, I enjoy calligraphy, crochet, baking, and photography (more on that below!). </p>
+                            <div class="row text-center justify-content-center" style="margin-top: 70px" data-aos="fade-up" data-aos-delay="550">
+                                <div class="col col-lg-4" style="margin-right: 50px;">
+                                    <a href="#contact-section">
+                                        <button type="button" class="btn btn-outline-dark contact-button" style="font-size:14px; font-family: 'DM Sans', sans" button id="scrollDownButton" aria-label="Scroll down">
+                                            CONTACT ME
+                                        </button>
+                                    </a>
+                                </div>
+                                
+                                <div class="col col-lg-3">
+                                    <a href="Resume-Tal Berdichevsky.pdf" download="Tal_Berdichevsky_Resume">
+                                        <button type="button" class="btn btn-outline-dark contact-button" style="font-size:14px; font-family: 'DM Sans', sans">
+                                            MY RESUME
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+        </div>
+
+        <!-- HIGHLIGHTS SECTION -->
+        <div class="container-fluid highlights-section">
+            <div class="row text-center justify-content-center">
+                    <p style="font-size:30px; font-family: 'DM Sans', sans; margin-top: 40px; margin-bottom: 30px;">S H O R T C U T S</p>
+            </div>
+             <!-- HIGHLIGHT BUTTONS -->
+            <div class="row text-center justify-content-center highlight-button-container" style="padding-left: 150px; padding-bottom: 100px;">
+                <div class="col col-lg-3">
+                    <a href="#wayfair-coop">
+                        <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                            <img src="images/wayfair.png" alt="Wayfair Logo">
+                        </button>
+                    </a>
+                </div>
+                <div class="col col-lg-3">
+                <a href="#civic-ai-lab">
+                    <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                        <img src="images/civicAiLabLogo.png" alt="Civic AI Lab Logo">
+                    </button>
+                </a>
+            </div>
+            <div class="col col-lg-3">
+                <a href="#oasis-project">
+                <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                        <img src="images/oasisLogo.png" alt="Oasis Logo">
+                    </button>
+                </a>
+            </div>
+    <div class="row text-center justify-content-center highlight-button-container">
+        <div class="col col-lg-3">
+        <a href="#education-timeline">
+            <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-mortarboard" viewBox="0 0 16 16">
+                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5ZM8 8.46 1.758 5.965 8 3.052l6.242 2.913z"/>
+                        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46l-3.892-1.556Z"/>
+                      </svg>
                 </button>
             </a>
         </div>
-            <div class="col col-lg-1">
-                <a href="https://www.linkedin.com/in/tal-berdichevsky/">
-                    <button type="button" class="btn btn-floating btn-outline-light">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
-                            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
-                        </svg>
-                    </button>
-                </a>
-            </div>
+        <div class="col col-lg-3">
+        <a href="#mit-primes-section">
+            <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                    <img src="images/mitPrimesLogo.png" alt="MIT Primes Logo">
+                </button>
+            </a>
         </div>
-        </p>
+        <div class="col col-lg-3">
+        <a href="#photography-section">
+            <button type="button" class="btn highlight-button" button id="scrollDownButton" aria-label="Scroll down">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                        <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4z"/>
+                        <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5m0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7M3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                      </svg>
+                </button>
+            </a>
+        </div>
     </div>
 </div>
+        </div>
+            <!-- Highlights Content -->
 
-<br>
-<!-- PAGE CONTENTS -->
-<div class="container-fluid", style="height: 3200px">
-    <div class="container-fluid padding">
-
-        <!-- ABOUT ME -->
-        <div class="row">
-            <div class="col-md-4">
-                <h1 class="display-4">About</h1>
-                <hr>
+            <div class="timeline" id="education-timeline">
+                <br>
+                <p style="font-size:35px; font-family: 'DM Sans', sans; margin-left: 140px; margin-top: 50px; margin-bottom: 50px;">E D U C A T I O N</p>
+                <div class="timeline-item" data-aos="fade-up">
+                    <div class="timeline-icon">
+                        <img src="images/NEULogo.png" alt="School Logo">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="title-and-gpa">
+                            <h3>Northeastern University</h3>
+                            <p class="gpa">GPA: 3.857/4.0, Dean's List</p>
+                        </div>
+                        <div class="education-details">
+                            <p><b>Major:</b> Computer Science, Artificial Intelligence Concentration @ <b>Khoury College of Computer Sciences</b></p>
+                            <p><b>Minor:</b> Mathematics</p>
+                            <p><b>Awards:</b> Dean's List (all class semesters)</p>
+                            <p><b>Relevant Coursework:</b> Software Engineering(Graduate Level), Computer Systems, Algorithms and Data Structures, Object-Oriented Design, Linear Algebra, Computer Graphics(Graduate Level), Database Design, Cybersecurity, Mathematics of Data Models, Discrete Structures </p>
+                            <p><b>TA Experience:</b> Database Design</p>
+                        </div>
+                        <br>
+                        <span class="date">September 2021 - Present</span>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-icon">
+                        <img src="images/harvard-extension-school.png" alt="School Logo">
+                    </div>
+                    <div class="timeline-content">
+                        <div class="title-and-gpa">
+                            <h3>Harvard Extension School</h3>
+                            <p class="gpa">GPA: N/A</p>
+                        </div>
+                        <div class="education-details">
+                            <p>Multivariable Calculus Course.</p>
+                            <p>Covered differential, integral, and vector calculus across multiple dimensions</p>
+                        </div>
+                        <br>
+                        <span class="date">September 2019 - December 2019</span>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="timeline-icon">
+                        <img src="images/nshsLogo.png" alt="School Logo">
+                    </div>
+                    <div class="timeline-content">
+                    <div class="title-and-gpa">
+                        <h3>Newton South High School </h3>
+                        <p class="gpa">GPA: 3.91/4.0</p>
+                    </div>
+                    <div class="education-details">
+                        <p><b>Awards:</b> MA State Seal of Biliteracy(Hebrew & English) with Distinction, High Honor Roll (all quarters), Warren B. Manhard Mathematics Award (Honorable Mention), AP Scholar with Honors</p>
+                        <p><b>Experience:</b> Math Teaching Assistant (Algebra I through BC Calc), Personal Math tutor (elementary-middle school levels)</p>
+                        <p><b>External Coursework:</b> Sin x factorization (<b>MIT</b> High School Studies Program) </p>
+                        <p><b>Leadership:</b> Co-Founder and Co-President of KIND Club. Led and organized meetings and fundraising events to support children and families in need in the greater Boston area and beyond.
+                            Donated to Black Lives Matter, Boston Children's Hospital, The Greater Boston Food Bank.</p>
+                    </div>
+                    <br>
+                    <span class="date">September 2017 - June 2021</span>
+                </div>
             </div>
+            <p style="font-size:35px; font-family: 'DM Sans', sans; margin-left: 140px; margin-top: 130px;">H I G H L I G H T S</p>
         </div>
 
-        <div class="row">
-            <div class="col-md-5">
-                <p>A student at Northeastern University pursuing a BS Computer Science degree. I am passionate about Artificial Intelligence and look for opportunities to apply myself for a future career in software development.</p>
-            </div>
-            <div class="col-md-3"></div>
-            <div class="col-md-4">
-                <h6>🌎 English, Russian, Hebrew, Classroom Spanish</h6>
-                <h6>🏫 Northeastern University, Khoury College of Computer Sciences</h6>
-                <h6>📚 Computer Science, AI</h6>
-                <h6>🏠 Newton, MA</h6>
-                <h6>💼 Northeastern Civic AI Lab</h6>
-                <h6>❤️ Code, photography, calligraphy, crochet</h6>
-            </div>
-
-
-
-        </div>
-        <br><br><br>
-        <div class="container-fluid padding">
-        <div class="row">
-            <div class="col-md-4">
-                <h1 class="display-4">Highlights</h1>
-                <hr>
-            </div>
-        </div>
-        <br>
-
-        <div class="shadow card p-3 mb-1 rounded" style="background-color:rgba(215, 230, 255, 0.8)">
+        <div class="shadow card p-3 mb-1 rounded highlight-card" id="wayfair-coop">
+            <!-- Project Content -->
             <div class="row">
                 <div class="col-md-6">
-                    <h2>
-                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
-                    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
-                </svg>
-            NATO Seminar Presentation,
-            <a href="https://civicai.khoury.northeastern.edu/">Civic AI Lab</a> </h2>
-            <p>November 16th, 2022</p>
+                    <p style="font-size:35px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-code-square" viewBox="0 0 16 16">
+                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                            <path d="M6.854 4.646a.5.5 0 0 1 0 .708L4.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0zm2.292 0a.5.5 0 0 0 0 .708L11.793 8l-2.647 2.646a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708 0z"/>
+                          </svg>
+                          Software Engineering Co-op: Wayfair</p>
+                    <p><i>July 2023-December 2023</i></p>
 
-            <p>
-            Presented among speakers from Europe and Latin America. Showcased research progress and findings.
-            The seminar focused on using human centered AI to understand how political
-            lies from International actors are disseminated on social media,
-            and strategies to design relevant AI tools to combat disinformation.</p>
-            <p> On the right are some snippets from the presentation.</p>
-            </div>
-
-            <div class="col-md-1">
-            </div>
-
-            <!-- NATO CAROUSEL-->
-            <div class="col-md-4">
-                <div id="nato-carousel" class="carousel slide border" data-bs-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    </ol>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="10000">
-                            <img class="d-block w-100" src="images/nato1.png">
-                        </div>
-
-                        <div class="carousel-item" data-bs-interval="10000">
-                            <img class="d-block w-100" src="images/nato2.png">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="10000">
-                            <img class="d-block w-100" src="images/nato3.png">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="10000">
-                            <img class="d-block w-100" src="images/nato4.png">
-                        </div>
-
-
-
-                    </div>
-                    <button class="carousel-control-prev btn btn-outline-dark" type="button" data-bs-target="#nato-carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"></span>
-                    </button>
-                    <button class="carousel-control-next btn btn-outline-dark" type="button" data-bs-target="#nato-carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden"></span>
-                    </button>
+                    <p>
+                        Completed a 6-month co-op as a software engineer in the Content Recommendations team. 
+                        <ul>
+                            <li>Developed new production recommendation strategies, optimized existing ones, established alerting for jobs/Airflow DAGs, and enhanced test coverage. </li>
+                            <li>Gathered input from various teams and worked on a validation endpoint for the content database used by marketing teams.</li>
+                            <li>Directly produced <b>11.5% GRS/User Lift</b> in Wayfair’s biggest promo period by assisting in the development of a “Quarter Takeover” promo event.</li>
+                            <li>Designed and implemented an organization-wide support request form, automating ticket creation and team notifications. The form streamlined the team’s support process, significantly improving efficiency and receiving high praise for its impact. </li>
+                            <li>Fostered a culture of teamwork through event organization.</li>
+                        </ul>
+                    </p>
+                </div>
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-4" style="margin-top: 40px;">
+                    <img src="images/wayfairLogo2.jpeg" class="img-fluid rounded">
+                    <br><br>
                 </div>
                 <br>
             </div>
         </div>
-
-
-
-
-
-
-
+        <br>
+            
+            <div class="shadow card p-3 mb-1 rounded highlight-card" id="civic-ai-lab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p style="font-size:35px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-globe2" viewBox="0 0 16 16">
+                        <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855-.143.268-.276.56-.395.872.705.157 1.472.257 2.282.287V1.077zM4.249 3.539c.142-.384.304-.744.481-1.078a6.7 6.7 0 0 1 .597-.933A7.01 7.01 0 0 0 3.051 3.05c.362.184.763.349 1.198.49zM3.509 7.5c.036-1.07.188-2.087.436-3.008a9.124 9.124 0 0 1-1.565-.667A6.964 6.964 0 0 0 1.018 7.5h2.49zm1.4-2.741a12.344 12.344 0 0 0-.4 2.741H7.5V5.091c-.91-.03-1.783-.145-2.591-.332zM8.5 5.09V7.5h2.99a12.342 12.342 0 0 0-.399-2.741c-.808.187-1.681.301-2.591.332zM4.51 8.5c.035.987.176 1.914.399 2.741A13.612 13.612 0 0 1 7.5 10.91V8.5H4.51zm3.99 0v2.409c.91.03 1.783.145 2.591.332.223-.827.364-1.754.4-2.741H8.5zm-3.282 3.696c.12.312.252.604.395.872.552 1.035 1.218 1.65 1.887 1.855V11.91c-.81.03-1.577.13-2.282.287zm.11 2.276a6.696 6.696 0 0 1-.598-.933 8.853 8.853 0 0 1-.481-1.079 8.38 8.38 0 0 0-1.198.49 7.01 7.01 0 0 0 2.276 1.522zm-1.383-2.964A13.36 13.36 0 0 1 3.508 8.5h-2.49a6.963 6.963 0 0 0 1.362 3.675c.47-.258.995-.482 1.565-.667zm6.728 2.964a7.009 7.009 0 0 0 2.275-1.521 8.376 8.376 0 0 0-1.197-.49 8.853 8.853 0 0 1-.481 1.078 6.688 6.688 0 0 1-.597.933zM8.5 11.909v3.014c.67-.204 1.335-.82 1.887-1.855.143-.268.276-.56.395-.872A12.63 12.63 0 0 0 8.5 11.91zm3.555-.401c.57.185 1.095.409 1.565.667A6.963 6.963 0 0 0 14.982 8.5h-2.49a13.36 13.36 0 0 1-.437 3.008zM14.982 7.5a6.963 6.963 0 0 0-1.362-3.675c-.47.258-.995.482-1.565.667.248.92.4 1.938.437 3.008h2.49zM11.27 2.461c.177.334.339.694.482 1.078a8.368 8.368 0 0 0 1.196-.49 7.01 7.01 0 0 0-2.275-1.52c.218.283.418.597.597.932zm-.488 1.343a7.765 7.765 0 0 0-.395-.872C9.835 1.897 9.17 1.282 8.5 1.077V4.09c.81-.03 1.577-.13 2.282-.287z"/>
+                    </svg>
+                NATO Seminar Presentation,
+                <a href="https://civicai.khoury.northeastern.edu/">Civic AI Lab</a> </p>
+                <p><i>November 16th, 2022</i></p>
+    
+                <p>
+                Presented among speakers from Europe and Latin America. Showcased research progress and findings.
+                The seminar focused on using human centered AI to understand how political
+                lies from International actors are disseminated on social media,
+                and strategies to design relevant AI tools to combat disinformation.</p>
+                <p> On the right are some snippets from the presentation.</p>
+                </div>
+    
+                <div class="col-md-1">
+                </div>
+    
+                <!-- NATO CAROUSEL-->
+                <div class="col-md-4">
+                    <div id="nato-carousel" class="carousel slide border" data-bs-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#nato-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" data-bs-interval="10000">
+                                <img class="d-block w-100" src="images/nato1.png">
+                            </div>
+    
+                            <div class="carousel-item" data-bs-interval="10000">
+                                <img class="d-block w-100" src="images/nato2.png">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="10000">
+                                <img class="d-block w-100" src="images/nato3.png">
+                            </div>
+                            <div class="carousel-item" data-bs-interval="10000">
+                                <img class="d-block w-100" src="images/nato4.png">
+                            </div>
+    
+    
+    
+                        </div>
+                        <button class="carousel-control-prev btn btn-outline-dark" type="button" data-bs-target="#nato-carousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"></span>
+                        </button>
+                        <button class="carousel-control-next btn btn-outline-dark" type="button" data-bs-target="#nato-carousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"></span>
+                        </button>
+                    </div>
+                    <br>
+                </div>
+            </div>
 
         </div>
-        <br>
 
-        <div class="shadow card p-3 mb-1 rounded" style="background-color:rgba(215, 230, 255, 0.8)">
+        <br>
+        <div class="shadow card p-3 mb-1 rounded highlight-card" id="oasis-project">
+            <!-- Project Content -->
             <div class="row">
                 <div class="col-md-6">
-                    <h2>
+                    <p style="font-size:35px;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cursor" viewBox="0 0 16 16">
                             <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"/>
                         </svg>
-                    HowBusyIsMarino.com</h2>
-                    <h9>Development:September 2022 - November 2022</h9>
-                    <p>Presentation: November 13th, 2022</p>
+                    HowBusyIsMarino.com</p>
+                    <p><i>Development: September - November 2022</i></p>
 
                     <p>
                         HowBusyIsMarino.com is a website summarizing Northeastern gymnasium activity over previous periods of time.
@@ -196,6 +601,9 @@
                     </p>
                     <p>
                         Utilizes HTML/Bootstrap and Flask, as well as AWS for web scraping and as a previous hosting solution (under https://howbusyismarino.com).
+                    </p>
+                    <p>
+                        Created the website as part of Northeastern's <a href="https://oasisneu.com/">Oasis</a> club.
                     </p>
                 </div>
                 <div class="col-md-1">
@@ -207,7 +615,6 @@
                 <br>
 
             </div>
-            <hr>
 
             <div class="row justify-content-center">
 
@@ -240,30 +647,21 @@
                             <img src="images/oasisWebsite/marino4.png" class="img-fluid rounded">
                             <br><br>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
         <br>
-
-        <div class="shadow card p-3 mb-1 rounded" style="background-color:rgba(215, 230, 255, 0.8)">
+        <div class="shadow card p-3 mb-1 rounded highlight-card" id="mit-primes-section">
             <div class="row">
-                <div class="col-md-6"><h2>
+                <div class="col-md-6">
+                    <p style="font-size:35px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-diagram-3" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
                     </svg>
                     MIT 9th Annual PRIMES Cycle &
-                    <a href="https://math.mit.edu/research/highschool/primes/conference/conf-2019.html">Conference</a> </h2>
-                    <h9>Cycle: Jan 2019 - May 2019</h9>
-                    <p>Conference: May 18th, 2019</p>
-
+                    <a href="https://math.mit.edu/research/highschool/primes/conference/conf-2019.html">Conference</a> </p>
+                    <p><i>Cycle: January - May 2019, Conference: May 18th, 2019</i></p>
                     <p>
                         Explored Graph Theory under the mentorship of an MIT student Agustín García in a selective program.
                         Offered students a unique student view on Graph Theory and map coloring by authoring an expository
@@ -278,10 +676,7 @@
                     <br><br>
                 </div>
                 <br>
-
             </div>
-            <hr>
-
             <div class="row justify-content-center">
             <div class="col-md-1">
                 <a class="btn btn-outline-dark" data-bs-toggle="collapse" href="#collapseMIT" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -292,8 +687,6 @@
             </div>
         </div>
             </div>
-
-            </p>
             <div class="collapse" id="collapseMIT">
 
             <div class="row">
@@ -307,114 +700,120 @@
                     <embed class="border border-dark" src="PRIMES-Slides.pdf" width="450px" height="300px"/>
                     <h6>Presentation Slides</h6>
                 </div>
-
-
             </div>
-
         </div>
-
-
-
-
-
         <br>
 
 
 
 
-
-        <div class="shadow card p-3 mb-1 rounded" style="background-color:rgba(215, 230, 255, 0.8)">
+        <!-- PHOTOGRAPHY SECTION -->
+        
+        <div class="shadow card p-3 mb-1 rounded highlight-card" id="photography-section">
             <div class="row">
-                <div class="col-md-6"><h2>
+                <div class="col-md-6">
+                    <p style="font-size:35px;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
                         <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
                         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
                     </svg>
-                    Some pictures I took! </h2>
-
+                    Some pictures I took! </p>
                 </div>
-
-                <br>
-
+                <br><br><br><br><br><br>
             </div>
-
-            <!-- PHOTOGRAPHY CAROUSEL -->
-            <div class="row justify-content-center">
-                <div class="col-md-3 text-center">
-                    <div id="my-carousel" class="carousel slide" data-bs-ride="carousel">
-                        <ol class="carousel-indicators">
-                            <button type="button" data-bs-target="#my-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#my-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#my-carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#my-carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                            <button type="button" data-bs-target="#my-carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                        </ol>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img class="d-block w-100" src="images/squirrel2.jpg">
-                            </div>
-
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="images/bird.jpg">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="images/ducks.jpg">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="images/scene.jpg">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="10000">
-                                <img class="d-block w-100" src="images/squirrel1.jpg">
-                            </div>
-
-
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#my-carousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#my-carousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden"></span>
-                        </button>
-                    </div>
-
+            <div class="photo-grid">
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 1" style="--rotation: -10deg;">
+                    <img src="images/squirrel2.jpg" alt="Photo 1">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 2" style="--rotation: 5deg;">
+                    <img src="images/beach.JPG" alt="Photo 2">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 3" style="--rotation: -2deg;">
+                    <img src="images/bird.jpg" alt="Photo 3">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 4" style="--rotation: 10deg;">
+                    <img src="images/ducks.jpg" alt="Photo 4">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 5" style="--rotation: 2deg;">
+                    <img src="images/scene.jpg" alt="Photo 5">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 6" style="--rotation: -15deg;">
+                    <img src="images/squirrel1.jpg" alt="Photo 6">
+                </div>
+                <div class="photo-item" data-lightbox="gallery" data-title="Photo 7" style="--rotation: 5deg;">
+                    <img src="images/NYC.JPG" alt="Photo 7">
                 </div>
             </div>
-
-
-
-
-
+            <br><br>
         </div>
-
-        </div>
-
-        </div>
-
-
-
-
-
-
-
-
-
+        <br><br>
     </div>
-</div>
 
-<!-- PAGE FOOTER -->
-    <footer>
-        <div class=" row fixed-bottom p--8 bg-dark">
-            <div class="p-2 col-md-2 px-2 fixed-center padding">
-                <div class="col-md-8 padding">
-                    <img src="images/miniLogo.png" class="img-fluid">
+
+    <!-- PAGE FOOTER -->
+    <footer class="bg-dark" id="contact-section">
+        <div class="container">
+            <br>
+            <p class="footer-title text-center justify-content-center" sty>C O N T A C T</p>
+            <hr style="width: 30%; height: 2px;background-color: #ffffff; margin: 0 auto;border-radius: 5px; opacity: 1; color: #ffffff; margin-bottom: 15px;">
+            <!-- Contact Icons -->
+            <div class="row text-center justify-content-center" style="margin-top: 70px; margin-bottom:100px">
+                <div class="col col-lg-3">
+                    <a href="mailto: berdichevsky.t@northeastern.edu">
+                        <button type="button" class="btn btn-outline-light lower-buttons" style="margin-bottom:20px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-envelope-at-fill" viewBox="0 0 16 16">
+                                <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2H2Zm-2 9.8V4.698l5.803 3.546L0 11.801Zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 9.671V4.697l-5.803 3.546.338.208A4.482 4.482 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671Z"/>
+                                <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315 0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421 9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034v.21Zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791Z"/>
+                            </svg>
+                        </button>
+                    </a>
+                    <p style="color: white; font-family: 'Comfortaa';">berdichevsky.t@northeastern.edu</p>
+                </div>
+                <div class="col col-lg-3">
+                    <a href="https://www.linkedin.com/in/tal-berdichevsky/">
+                        <button type="button" class="btn btn-floating btn-outline-light lower-buttons" style="margin-bottom:20px">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+                                <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/>
+                            </svg>
+                        </button>
+                    </a>
+                    <p style="color: white; font-family: 'Comfortaa';">let's connect!</p>
                 </div>
             </div>
+            
+            <!-- Scroll Back Up Button -->
+        <div class="text-center">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="btn btn-outline-light" style="border: none !important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+                  </svg>
+            </button>
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+        <div class="row p--8 bg-dark text-center">
+            <p style="color:#ffffff; margin-top: 50px; font-family: 'Comfortaa'"> Talia Berdichevsky: 2023</p>
         </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('scrollDownButton').addEventListener('click', function() {
+                document.querySelector('.about-me').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/yourkit.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity=
-        "sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
 </html>
